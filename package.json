@@ -1,0 +1,35 @@
+{
+  "name": "comedysimulator",
+  "version": "1.0.0",
+  "description": "So Much Fun !",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/printer83mph/comedysimulator.git"
+  },
+  "author": "Thomas Shaw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/printer83mph/comedysimulator/issues"
+  },
+  "homepage": "https://github.com/printer83mph/comedysimulator#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.1.1",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
+    "three": "^0.120.1",
+    "ts-loader": "^8.0.3",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
