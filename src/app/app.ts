@@ -1,8 +1,9 @@
-import { Clock, EquirectangularReflectionMapping, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer } from "three";
+import { Clock, EquirectangularReflectionMapping, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer, Euler } from "three";
 import { CameraMover } from "./models/cameraMover"
+import { onResize as aspectResize } from "./util/aspect"
 
-// media
-import SpaceHDRI from "./res/space_hdri.png";
+// @ts-ignore
+import SpaceHDRI from "./res/interior.jpg";
 
 export class App {
 
@@ -10,7 +11,7 @@ export class App {
 
   private readonly scene = new Scene();
   private readonly camera = new PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 10000);
-  private readonly cameraMover = new CameraMover(this.camera, 1);
+  private readonly cameraMover = new CameraMover(this.camera, .05);
   private readonly renderer: WebGLRenderer;
 
   private readonly dtTracker = new Clock();
@@ -19,6 +20,7 @@ export class App {
   private setup() {
     this.scene.background = new TextureLoader().load(SpaceHDRI, (tex) => {tex.mapping = EquirectangularReflectionMapping});
     this.scene.add(this.cameraMover);
+    // this.cameraMover.setRotationFromEuler(new Euler(0,0,0));
   }
 
   private update(dt: number) {
@@ -46,6 +48,7 @@ export class App {
   }
 
   private onResize() {
+    aspectResize();
     this.renderer.setSize(innerWidth, innerHeight);
     this.camera.aspect = innerWidth / innerHeight;
     this.camera.updateProjectionMatrix();
