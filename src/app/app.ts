@@ -10,7 +10,7 @@ export class App {
 
   private readonly scene = new Scene();
   private readonly camera = new PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 10000);
-  private readonly cameraMover = new CameraMover(this.camera, .03);
+  private readonly cameraMover = new CameraMover(this.camera, 1);
   private readonly renderer: WebGLRenderer;
 
   private readonly dtTracker = new Clock();
@@ -22,7 +22,7 @@ export class App {
   }
 
   private update(dt: number) {
-    // console.log(`DT is ${1/dt}`);
+    // console.log(`DT is ${dt}`);
   }
 
   private onMouseMove(event: MouseEvent) {

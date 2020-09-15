@@ -15,7 +15,8 @@ export class CameraMover extends Object3D {
 
   onMouseMove(mouseX: number, mouseY: number) {
 
-    this.camera.setRotationFromEuler(new Euler(-(mouseY / innerHeight - .5) * this.rotationScale, -(mouseX / innerHeight - .5) * this.rotationScale, 0))
+    // TODO: fix this (it's so jank)
+    this.camera.setRotationFromEuler(new Euler((mouseY / innerHeight - .5) * this.rotationScale, (mouseX / innerHeight - .5) * this.rotationScale, 0))
 
   }
 
