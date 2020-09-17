@@ -3,7 +3,8 @@ import { CameraMover } from "./models/cameraMover"
 import { onResize as aspectResize } from "./util/aspect"
 
 // @ts-ignore
-import SpaceHDRI from "./res/interior.jpg";
+import SpaceHDRI from "./res/space_hdri.png";
+import { Stage } from "./models/stage";
 
 export class App {
 
@@ -11,7 +12,7 @@ export class App {
 
   private readonly scene = new Scene();
   private readonly camera = new PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 10000);
-  private readonly cameraMover = new CameraMover(this.camera, .05);
+  private readonly cameraMover = new CameraMover(this.camera);
   private readonly renderer: WebGLRenderer;
 
   private readonly dtTracker = new Clock();
@@ -19,7 +20,11 @@ export class App {
 
   private setup() {
     this.scene.background = new TextureLoader().load(SpaceHDRI, (tex) => {tex.mapping = EquirectangularReflectionMapping});
+    this.cameraMover.rotation.set(90 * Math.PI / 180, 0, 0);
+    this.cameraMover.position.set(0, 1.7, 0);
+
     this.scene.add(this.cameraMover);
+    new Stage(this.scene);
     // this.cameraMover.setRotationFromEuler(new Euler(0,0,0));
   }
 

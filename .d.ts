@@ -9,3 +9,8 @@ declare module "*.jpg" {
   const content: any;
   export = content;
 }
+
+declare module "*.glb" {
+  const content: any;
+  export = content;
+}
