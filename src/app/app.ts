@@ -1,4 +1,4 @@
-import { Clock, EquirectangularReflectionMapping, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer, Euler } from "three";
+import { ACESFilmicToneMapping, Clock, EquirectangularReflectionMapping, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer } from "three";
 import { CameraMover } from "./models/cameraMover"
 import { onResize as aspectResize } from "./util/aspect"
 
@@ -12,7 +12,7 @@ export class App {
 
   private readonly scene = new Scene();
   private readonly camera = new PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 10000);
-  private readonly cameraMover = new CameraMover(this.camera);
+  private readonly cameraMover = new CameraMover(this.camera, 2);
   private readonly renderer: WebGLRenderer;
 
   private readonly dtTracker = new Clock();
@@ -45,7 +45,10 @@ export class App {
     });
 
     window.addEventListener("resize", () => this.onResize());
-    window.addEventListener("mousemove", (e: MouseEvent) => this.onMouseMove(e))
+    window.addEventListener("mousemove", (e: MouseEvent) => this.onMouseMove(e));
+
+    this.renderer.toneMapping = ACESFilmicToneMapping;
+    this.renderer.physicallyCorrectLights = true;
 
     this.onResize();
     this.setup();

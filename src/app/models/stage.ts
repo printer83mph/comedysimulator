@@ -17,11 +17,12 @@ export class Stage {
   }
 
   private setupWorld(scene: Group) {
-    const sunLight = new DirectionalLight(new Color(245,230,210), .006);
+    const sunLight = new DirectionalLight(new Color(245,230,210), .004);
     sunLight.add(sunLight.target);
     sunLight.target.position.set(.1, -.2, .1);
+    // sunLight.castShadow = true;
     scene.add(sunLight);
-    scene.add(new AmbientLight(new Color(255, 255, 255), .0004));
+    scene.add(new AmbientLight(new Color(255, 255, 255), .004));
   }
 
 }
