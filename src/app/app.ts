@@ -1,6 +1,6 @@
 import { ACESFilmicToneMapping, Clock, EquirectangularReflectionMapping, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer } from "three";
 import { CameraMover } from "./models/cameraMover"
-import { onResize as aspectResize } from "./util/aspect"
+import * as Aspect from "./util/aspect"
 
 // @ts-ignore
 import SpaceHDRI from "./res/space_hdri.png";
@@ -56,7 +56,7 @@ export class App {
   }
 
   private onResize() {
-    aspectResize();
+    Aspect.onResize();
     this.renderer.setSize(innerWidth, innerHeight);
     this.camera.aspect = innerWidth / innerHeight;
     this.camera.updateProjectionMatrix();
