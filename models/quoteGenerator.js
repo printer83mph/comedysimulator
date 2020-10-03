@@ -1,21 +1,23 @@
-const WordPos = require("wordpos"),
-  wordpos = new WordPos({});
+const { PredicateSyntax } = require("english-io");
 const movieQuote = require("popular-movie-quotes");
 
 class QuoteGenerator {
 
-//   static makeQuote(input, callback) {
+  static makeQuote(input, callback) {
 
-//     const originalQuote = movieQuote.getRandomQuote();
+    const originalQuote = movieQuote.getRandomQuote();
 
-//     wordpos.getNouns(originalQuote, (nouns) => {
-//       console.log(nouns);
-//     });
+    console.log(`quote is ${originalQuote}`);
 
-//     // if (typeof callback === "function") {
-//     //   callback(output);
-//     // }
-//   }
+    const pred = new PredicateSyntax();
+    let sentence = pred.parse(originalQuote);
+
+    console.log(sentence);
+
+    // if (typeof callback === "function") {
+    //   callback(output);
+    // }
+  }
 
 }
 
