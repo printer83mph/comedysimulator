@@ -1,6 +1,7 @@
 import { ACESFilmicToneMapping, Clock, EquirectangularReflectionMapping, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer } from "three";
 import { CameraMover } from "./models/cameraMover"
 import * as Aspect from "./util/aspect"
+import QuoteGenerator from "./models/quoteGenerator"
 
 // @ts-ignore
 import SpaceHDRI from "./res/space_hdri.png";
@@ -36,6 +37,10 @@ export class App {
     this.cameraMover.onMouseMove(event.x, event.y);
   }
 
+  private onClick(event: MouseEvent) {
+    QuoteGenerator.makeQuote();
+  }
+
   // UTIL
 
   constructor() {
@@ -46,6 +51,7 @@ export class App {
 
     window.addEventListener("resize", () => this.onResize());
     window.addEventListener("mousemove", (e: MouseEvent) => this.onMouseMove(e));
+    window.addEventListener("click", (e: MouseEvent) => this.onClick(e));
 
     this.renderer.toneMapping = ACESFilmicToneMapping;
     this.renderer.physicallyCorrectLights = true;
