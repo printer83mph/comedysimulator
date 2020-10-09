@@ -1,19 +1,28 @@
-import { ACESFilmicToneMapping, Clock, EquirectangularReflectionMapping, PerspectiveCamera, Scene, TextureLoader, WebGLRenderer } from "three";
-import { CameraMover } from "./models/cameraMover"
+import {
+  ACESFilmicToneMapping,
+  Clock,
+  EquirectangularReflectionMapping,
+  PerspectiveCamera,
+  Scene,
+  TextureLoader,
+  WebGLRenderer
+} from "three";
+// import { CameraMover } from "./models/cameraMover"
 import * as Aspect from "./util/aspect"
 import QuoteGenerator from "./models/quoteGenerator"
 
 // @ts-ignore
 import SpaceHDRI from "./res/space_hdri.png";
 import { Stage } from "./models/stage";
+import CameraSwitcher from "./models/cameraSwitcher";
 
+// noinspection JSMethodCanBeStatic
 export class App {
 
   canvas: HTMLCanvasElement
 
   private readonly scene = new Scene();
-  private readonly camera = new PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 10000);
-  private readonly cameraMover = new CameraMover(this.camera, 2);
+  private cameraSwitcher: CameraSwitcher;
   private readonly renderer: WebGLRenderer;
 
   private readonly dtTracker = new Clock();
@@ -21,11 +30,10 @@ export class App {
 
   private setup() {
     this.scene.background = new TextureLoader().load(SpaceHDRI, (tex) => {tex.mapping = EquirectangularReflectionMapping});
-    this.cameraMover.rotation.set(90 * Math.PI / 180, 0, 0);
-    this.cameraMover.position.set(0, 1.7, 0);
 
-    this.scene.add(this.cameraMover);
-    new Stage(this.scene);
+    new Stage(this.scene, ( gltfScene ) => {
+      this.cameraSwitcher = new CameraSwitcher(gltfScene, "WideCam");
+    });
     // this.cameraMover.setRotationFromEuler(new Euler(0,0,0));
   }
 
@@ -34,7 +42,7 @@ export class App {
   }
 
   private onMouseMove(event: MouseEvent) {
-    this.cameraMover.onMouseMove(event.x, event.y);
+    // this.cameraMover.onMouseMove(event.x, event.y);
   }
 
   private onClick(event: MouseEvent) {
@@ -64,14 +72,18 @@ export class App {
   private onResize() {
     Aspect.onResize();
     this.renderer.setSize(innerWidth, innerHeight);
-    this.camera.aspect = innerWidth / innerHeight;
-    this.camera.updateProjectionMatrix();
+    if (!this.cameraSwitcher) return;
+    if (this.cameraSwitcher.currentCamera instanceof PerspectiveCamera) {
+      this.cameraSwitcher.currentCamera.aspect = innerWidth / innerHeight;
+      this.cameraSwitcher.currentCamera.updateProjectionMatrix();
+    }
   }
 
   private render() {
     requestAnimationFrame(() => this.render());
     this.update(this.dtTracker.getDelta());
-    this.renderer.render(this.scene, this.camera);
+    if (!this.cameraSwitcher) return;
+    this.renderer.render(this.scene, this.cameraSwitcher.currentCamera);
   }
 
 }
