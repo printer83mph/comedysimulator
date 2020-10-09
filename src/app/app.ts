@@ -18,8 +18,6 @@ import CameraSwitcher from "./models/cameraSwitcher";
 // noinspection JSMethodCanBeStatic
 export class App {
 
-  canvas: HTMLCanvasElement
-
   private readonly scene = new Scene();
   private cameraSwitcher: CameraSwitcher;
   private readonly renderer: WebGLRenderer;

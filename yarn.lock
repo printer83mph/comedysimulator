@@ -1944,6 +1944,13 @@ concat-stream@^1.5.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
+conjugate@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/conjugate/-/conjugate-1.0.4.tgz#b29065161d9c2d64b1068449f7050723a6ec3547"
+  integrity sha512-FD9focNzZtN6dXI/UIQtbkJ2J9RBghiao1vtJVFTrxXDTBCQmZBX1ZEkz1qDrkfPw3230CrofnOXs6gBAuI0JA==
+  dependencies:
+    lodash "^4.17.10"
+
 console-browserify@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.2.0.tgz#67063cef57ceb6cf4993a2ab3a55840ae8c49336"
@@ -3480,7 +3487,7 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.4:
+lodash@^4.17.10, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.4:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==

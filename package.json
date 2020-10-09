@@ -20,6 +20,7 @@
   "homepage": "https://github.com/printer83mph/comedysimulator#readme",
   "dependencies": {
     "buzzphrase": "^2.5.5",
+    "conjugate": "^1.0.4",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "natural": "^2.1.5",

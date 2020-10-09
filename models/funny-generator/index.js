@@ -1,5 +1,6 @@
 const movieQuotes = require("popular-movie-quotes");
 const natural = require("natural");
+const conjugate = require("conjugate");
 const tensify = require("tensify");
 
 const lang = "EN";
@@ -37,7 +38,7 @@ FunnyGenerator.YoMamaJoke = () => {
   console.log(`Created Yo Mama joke in ${iterations} iterations.`)
 
   return {
-    joke: `Yo mama SO ${adjectives[0].toUpperCase()} that she ${tensify(verbs[0]).past.toUpperCase()}`,
+    joke: `Yo mama SO ${adjectives[0].toUpperCase()} that she ${tensify(conjugate("he", verbs[0])).past.toUpperCase()}`,
     originalQuote: quoteData.quote
   }
 }
