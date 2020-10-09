@@ -105,3 +105,6 @@ dist
 
 # blender backups
 *.blend1
+
+# webstorm config
+.idea/workspace.xml
