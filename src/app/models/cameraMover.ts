@@ -1,7 +1,7 @@
 import { Camera, Euler, Object3D, PerspectiveCamera } from "three";
 // import { maxSize } from "../util/aspect"
 
-export class CameraMover extends Object3D {
+class CameraMover extends Object3D {
 
   constructor(
     public readonly camera: Camera = new PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 10000),
@@ -25,3 +25,5 @@ export class CameraMover extends Object3D {
   }
 
 }
+
+export default CameraMover

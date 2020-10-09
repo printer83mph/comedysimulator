@@ -7,9 +7,8 @@ import {
   TextureLoader,
   WebGLRenderer
 } from "three";
-// import { CameraMover } from "./models/cameraMover"
+// import CameraMover from "./models/cameraMover"
 import * as Aspect from "./util/aspect"
-import QuoteGenerator from "./models/quoteGenerator"
 
 // @ts-ignore
 import SpaceHDRI from "./res/space_hdri.png";
@@ -46,7 +45,9 @@ export class App {
   }
 
   private onClick(event: MouseEvent) {
-    QuoteGenerator.makeQuote();
+    fetch("/joke")
+        .then(response => response.json())
+        .then(json => console.log(json))
   }
 
   // UTIL
