@@ -1,4 +1,4 @@
-import { Camera, Euler, Object3D, PerspectiveCamera, Quaternion, Vector3 } from "three";
+import { Camera, Euler, Object3D, PerspectiveCamera } from "three";
 // import { maxSize } from "../util/aspect"
 
 export class CameraMover extends Object3D {

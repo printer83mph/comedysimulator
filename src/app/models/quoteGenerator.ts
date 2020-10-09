@@ -1,4 +1,5 @@
-const { PredicateSyntax } = require("english-io");
+// import PredicateSyntax from "english-io"
+// @ts-ignore
 import MovieQuote from "popular-movie-quotes";
 
 class QuoteGenerator {
@@ -13,7 +14,7 @@ class QuoteGenerator {
 
     const quotes = MovieQuote.getQuotesByMovie("The Godfather");
 
-    quotes.forEach(quote => {
+    quotes.forEach((quote: { quote: string; movie: string; year: number; }) => {
       console.log(`${quote.quote} (${quote.movie}, ${quote.year})`);
     });
 
@@ -29,4 +30,4 @@ class QuoteGenerator {
 
 }
 
-module.exports = QuoteGenerator;
+export default QuoteGenerator;

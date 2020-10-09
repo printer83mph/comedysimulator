@@ -4,6 +4,7 @@ import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 // @ts-ignore
 import StageModel from "../res/3d/stage.glb";
 
+// noinspection JSMethodCanBeStatic
 export class Stage {
 
   constructor(scene: Scene) {
@@ -16,8 +17,8 @@ export class Stage {
     });
   }
 
-  private setupWorld(scene: Group) {
-    const sunLight = new DirectionalLight(new Color(245,230,210), .004);
+  private setupWorld(scene: Group): void {
+    const sunLight = new DirectionalLight(new Color(245,230,210), .0055);
     sunLight.add(sunLight.target);
     sunLight.target.position.set(.1, -.2, .1);
     // sunLight.castShadow = true;
