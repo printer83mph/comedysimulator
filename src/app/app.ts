@@ -47,7 +47,10 @@ export class App {
   private onClick(event: MouseEvent) {
     fetch("/joke")
         .then(response => response.json())
-        .then(json => console.log(json))
+        .then(json => {
+          console.log(json.joke);
+          console.log(`"${json.originalQuote}"`);
+        })
   }
 
   // UTIL

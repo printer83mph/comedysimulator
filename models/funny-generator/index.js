@@ -18,23 +18,28 @@ FunnyGenerator.YoMamaJoke = () => {
   let adjectives = [];
   let verbs = [];
 
+  let quoteData;
+
   let iterations = 0;
   while (adjectives.length === 0 || verbs.length === 0) {
 
-    const quoteData = movieQuotes.getSomeRandom(1)[0];
+    quoteData = movieQuotes.getSomeRandom(1)[0];
 
     const words = tagger.tag(tokenizer.tokenize(quoteData.quote)).taggedWords;
 
     // nouns = getPartsOfSpeech(words, "NNP");
     adjectives = getPartsOfSpeech(words, "JJ");
     verbs = getPartsOfSpeech(words, "VB");
+    // todo: add remaining sentence after the verb to the joke
 
     iterations++;
   }
   console.log(`Created Yo Mama joke in ${iterations} iterations.`)
 
-  // placeholder
-  return `Yo mama SO ${adjectives[0].toUpperCase()} that she ${tensify(verbs[0]).past.toUpperCase()}`;
+  return {
+    joke: `Yo mama SO ${adjectives[0].toUpperCase()} that she ${tensify(verbs[0]).past.toUpperCase()}`,
+    originalQuote: quoteData.quote
+  }
 }
 
 function getPartsOfSpeech(taggedWords, pos) {
