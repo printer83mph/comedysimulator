@@ -30,7 +30,7 @@ FunnyGenerator.YoMamaJoke = () => {
 
     // nouns = getPartsOfSpeech(words, "NNP");
     adjectives = getPartsOfSpeech(words, "JJ");
-    verbs = getPartsOfSpeech(words, "VB");
+    verbs = getPartsOfSpeech(words, "VB", "VBD", "VBN", "VBG");
     // todo: add remaining sentence after the verb to the joke
 
     iterations++;
@@ -43,10 +43,10 @@ FunnyGenerator.YoMamaJoke = () => {
   }
 }
 
-function getPartsOfSpeech(taggedWords, pos) {
+function getPartsOfSpeech(taggedWords, ...pos) {
   const out = [];
   for (let word of taggedWords) {
-    if (word.tag === pos) {
+    if (pos.indexOf(word.tag) !== -1) {
       out.push(word.token)
     }
   }
